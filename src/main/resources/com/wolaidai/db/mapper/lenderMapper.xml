@@ -12,5 +12,13 @@
 	<select id="getLoanLenders" resultType="LoanLender">
 	  select id, lender_id, loan_id, created_at, updated_at from loan_lenders limit 10 offset 10;
 	</select>
+	
+	<select id="selectAllLenders" fetchSize="10000" resultType="Lender">
+	  select l.* from lenders l join lender_profiles lp on lp.lender_id = l.id;
+	</select>
+	
+	<select id="selectAllLendersLargeThan" fetchSize="10000" resultType="Lender">
+	  select l.* from lenders l where id > #{id};
+	</select>
 </mapper>
   
